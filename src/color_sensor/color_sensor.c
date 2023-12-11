@@ -1,8 +1,10 @@
+
 #include "Arduino.h"
 #include "hal.h"
 #include "calibration.c"
 #include "RGB-HSV.h"
 
+//tezi move bi trqbva v drug fail no nesto gyrmi kato go sloza
 const int RedMin = 17;
 const int RedMax = 292;
 const int GreenMin = 20;
