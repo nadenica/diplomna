@@ -1,0 +1,95 @@
+FILE_FOR_CALIBRATION
+
+
+
+#define PIN_RGB_OUT			8
+#define PIN_RGB_S0		7
+#define PIN_RGB_S1			6
+#define PIN_RGB_S2			5
+#define PIN_RGB_S3			4
+
+// Stores frequency read by the photodiodes
+int redFrequency = 0;
+int greenFrequency = 0;
+int blueFrequency = 0;
+int whiteFrequency = 0;
+
+int redValue = 0;
+int greenValue = 0;
+int blueValue = 0;
+
+int redmin = 17;
+int redmax = 292;
+int greenmin = 20;
+int greenmax = 345;
+int bluemin = 18;
+int bluemax = 280;
+
+
+void setup() {
+  // Setting the outputs
+  pinMode(PIN_RGB_S0, OUTPUT);
+  pinMode(PIN_RGB_S1, OUTPUT);
+  pinMode(PIN_RGB_S2, OUTPUT);
+  pinMode(PIN_RGB_S3, OUTPUT);
+  
+  // Setting the PIN_RGB_OUT as an input
+  pinMode(PIN_RGB_OUT, INPUT);
+  
+  // Setting frequency scaling to 20%
+  digitalWrite(PIN_RGB_S0,HIGH);
+  digitalWrite(PIN_RGB_S1,LOW);
+  
+   // Begins serial communication 
+  Serial.begin(9600);
+}
+void loop() {
+  // Setting RED (R) filtered photodiodes to be read
+  digitalWrite(PIN_RGB_S2,LOW);
+  digitalWrite(PIN_RGB_S3,LOW);
+  
+  // Reading the output frequency
+  redFrequency = pulseIn(PIN_RGB_OUT, LOW);
+  redValue=map(redFrequency, redmin, redmax,255,0);
+   // Printing the RED (R) value
+  Serial.print("R = ");
+  Serial.print(redFrequency);
+  delay(100);
+  
+  // Setting GREEN (G) filtered photodiodes to be read
+  digitalWrite(PIN_RGB_S2,HIGH);
+  digitalWrite(PIN_RGB_S3,HIGH);
+  
+  // Reading the output frequency
+  greenFrequency = pulseIn(PIN_RGB_OUT, LOW);
+  greenValue=map(greenFrequency, greenmin, greenmax,255,0);
+  
+  // Printing the GREEN (G) value  
+  Serial.print(" G = ");
+  Serial.print(greenFrequency);
+  delay(100);
+ 
+  // Setting BLUE (B) filtered photodiodes to be read
+  digitalWrite(PIN_RGB_S2,LOW);
+  digitalWrite(PIN_RGB_S3,HIGH);
+  
+  // Reading the output frequency
+  blueFrequency = pulseIn(PIN_RGB_OUT, LOW);
+  blueValue=map(blueFrequency, bluemin, bluemax,255,0);
+  
+  // Printing the BLUE (B) value 
+  Serial.print(" B = ");
+  Serial.print(blueFrequency);
+  delay(100);
+
+  digitalWrite(PIN_RGB_S2,HIGH);
+  digitalWrite(PIN_RGB_S3,LOW);
+  
+  // Reading the output frequency
+  whiteFrequency = pulseIn(PIN_RGB_OUT, LOW);
+  
+  // Printing the BLUE (B) value 
+  Serial.print(" W = ");
+  Serial.println(whiteFrequency);
+  delay(100);
+}
