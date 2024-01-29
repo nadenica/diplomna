@@ -1,0 +1,1 @@
+void InitUltrasonicSensor(int pin_trigger, int pin_echo);
