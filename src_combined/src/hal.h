@@ -1,37 +1,50 @@
 // HARDWARE ABSTRACTION LAYER
 
-// ---- Definitions for ultrasonic sensors
-
-// Trigger pin for ultrasonic sensor 1
-#define PIN_US_1_TRIG		3
-#define PIN_US_1_ECHO		4
-
-#define PIN_US_2_TRIG		5
-#define PIN_US_2_ECHO		6
-
-#define PIN_US_3_TRIG		7
-#define PIN_US_3_ECHO		8
-
-#define PIN_US_4_TRIG		9
-#define PIN_US_4_ECHO		10
-
-#define DELAY_US_TRIG   50
+// ---- Definition for IR sensor
+#define PIN_IR          A0
 
 // ---- Definitions for RGB sensor
+#define PIN_RGB_OUT			22
+#define PIN_RGB_S0			24
+#define PIN_RGB_S1			26
+#define PIN_RGB_S2			28
+#define PIN_RGB_S3			30
+#define PIN_RGB_OE			14
 
-#define PIN_RGB_OUT			8
-#define PIN_RGB_S0			7
-#define PIN_RGB_S1			6
-#define PIN_RGB_S2			5
-#define PIN_RGB_S3			4
+// ---- Definitions for HX711
+#define PIN_HX711_DATA   32
+#define PIN_HX711_SCK    34
 
+// --- Definitions for LCD-TFT-2.8inch
+#define TFT_CS   53
+#define TFT_DC   48
+#define TFT_RST -1
+
+#define TFT_MOSI 51
+#define TFT_CLK 52 
+#define TFT_MISO 50
+
+#define t_SCK 52               
+#define t_CS 49                
+#define t_MOSI 51              
+#define t_MISO 50             
+#define t_IRQ 19
+// ----Definitions for Servo motor
+#define PIN_SERVO        35
+
+// ---- Definitions for ultrasonic sensors
+#define PIN_US_TRIG		    45
+#define PIN_US_ECHO		    47
+
+#define DELAY_US_TRIG     50 
 
 // ----Definitions for Stepper motor
-#define PIN_STEP	35
-#define PIN_DIR		37
+#define PIN_STEP_ENABLE	23
+#define PIN_STEP	25
+#define PIN_DIR		27
 #define STEPS_PER_REVOLUTION 200
 
-// ----Definitions for TX711
-#define PIN_TX711_DATA	2
-#define PIN_TX711_SCK	3
+// ----Definitions for microswitchs
+#define PIN_SWITCH_C       37
+#define PIN_SWITCH       39
 
