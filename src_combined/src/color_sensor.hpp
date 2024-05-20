@@ -1,4 +1,4 @@
+extern char *color_name[];
+enum color {red, yellow, green, cyan, blue, magenta, black, transparent};
 void setup_color_sensor();
-int read_color(uint8_t valS2, uint8_t valS3, int min, int max);
-int define_color();
-int get_color();
+enum color get_color();

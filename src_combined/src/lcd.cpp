@@ -11,6 +11,12 @@ int buttonY = 130;
 int buttonWidth = 200;
 int buttonHeight = 100;
 
+//the read measurments of the touchscreen when the button is
+int startx = 34;
+int endx = 77;
+int starty = 0;
+int endy = 92;
+
 void clear_screen(Adafruit_ILI9341 tft) 
 {
   digitalWrite(TFT_CS, LOW);
@@ -26,6 +32,9 @@ void setup_lcd(Adafruit_ILI9341 &tft, URTouch &ts)
   pinMode(TFT_CS, OUTPUT);
   pinMode(t_CS, OUTPUT);
 
+  pinMode(TFT_MOSI, OUTPUT);
+  pinMode(t_MOSI, OUTPUT);
+
   tft.begin();
   tft.setRotation(0);
   //setup_lcd(tft, ts);
@@ -36,8 +45,7 @@ void setup_lcd(Adafruit_ILI9341 &tft, URTouch &ts)
   tft.setTextColor(ILI9341_BLUE);
   tft.setTextSize(2);
   tft.setCursor(20, 50);
-  tft.print("Hello!");
-
+  tft.fillScreen(ILI9341_BLACK);
   Serial.println("lcd is setup");
 }
 
@@ -70,7 +78,7 @@ void generate_QRcode(Adafruit_ILI9341 tft, int bonuses, int weight)
 {
  char data[50];
   char * name_machine = "my_recycling_machine:)";
-  snprintf(data, 50, "%d%s%d", bonuses, name_machine, weight);
+  snprintf(data, 50, "%d%s%f", bonuses, name_machine, weight);
   Serial.println(data);
 
 //  char * data = qr_code_data(bonuses, weight);
@@ -122,8 +130,8 @@ bool read_touch(URTouch ts, int &x,int &y)
 bool is_button_touched(URTouch ts) 
 {
   int x,y;
-  return read_touch(ts, x,y)&&y >= buttonX && y <= buttonX + buttonWidth &&
-      x >= buttonY && x <= buttonY + buttonHeight;
+  return read_touch(ts, x, y)&&y >= starty && y <= endy &&
+      x >= startx && x <= endx;
 }
 
 void draw_button(Adafruit_ILI9341 tft) 
